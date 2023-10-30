@@ -1,13 +1,11 @@
 import android.os.Parcel
 import android.os.Parcelable
 
-data class SquareModel(val colorResId: Int) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt()
-    )
+class SquareModel() : Parcelable {
+    constructor(parcel: Parcel) : this()
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(colorResId)
+        // Здесь можно сохранить какие-либо данные, если это необходимо
     }
 
     override fun describeContents(): Int {
@@ -24,7 +22,6 @@ data class SquareModel(val colorResId: Int) : Parcelable {
         }
     }
 }
-
 
 
 

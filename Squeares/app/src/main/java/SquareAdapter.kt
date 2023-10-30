@@ -7,7 +7,7 @@ import com.example.squeares.R
 
 class SquareAdapter(private val squares: List<SquareModel>) : RecyclerView.Adapter<SquareAdapter.SquareViewHolder>() {
 
-    inner class SquareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+     class SquareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val squareView: View = itemView.findViewById(R.id.squareView)
         val numberTextView: TextView = itemView.findViewById(R.id.numberTextView)
     }
