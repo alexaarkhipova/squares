@@ -30,10 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val addButton: Button = findViewById(R.id.addButton)
         addButton.setOnClickListener {
-            // Определение цвета в зависимости от четности элемента
-            val colorResId = if (squares.size % 2 == 1) R.color.red else R.color.blue
-
-            // Создание нового квадрата с указанием цвета
+            // Создание нового квадрата
             val newSquare = SquareModel()
             squares.add(newSquare)
             adapter.notifyItemInserted(squares.size - 1)
