@@ -13,13 +13,16 @@ import SquareModel
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: SquareAdapter
     private val squares = mutableListOf<SquareModel>() // Список квадратов
+    private val colorResId = 0
+    private val number: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        adapter = SquareAdapter(squares)
+        adapter = SquareAdapter(squares, this)
 
         val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 4 else 3
         val layoutManager = GridLayoutManager(this, spanCount)
@@ -31,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val addButton: Button = findViewById(R.id.addButton)
         addButton.setOnClickListener {
             // Создание нового квадрата
-            val newSquare = SquareModel()
+            val newSquare = SquareModel(colorResId, number)
             squares.add(newSquare)
             adapter.notifyItemInserted(squares.size - 1)
         }

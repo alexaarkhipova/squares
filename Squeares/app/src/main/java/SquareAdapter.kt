@@ -1,13 +1,17 @@
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.squeares.MainActivity2
 import com.example.squeares.R
 
-class SquareAdapter(private val squares: List<SquareModel>) : RecyclerView.Adapter<SquareAdapter.SquareViewHolder>() {
+class SquareAdapter(private val squares: List<SquareModel>, private val context: Context) :
+    RecyclerView.Adapter<SquareAdapter.SquareViewHolder>() {
 
-     class SquareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SquareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val squareView: View = itemView.findViewById(R.id.squareView)
         val numberTextView: TextView = itemView.findViewById(R.id.numberTextView)
     }
@@ -28,7 +32,16 @@ class SquareAdapter(private val squares: List<SquareModel>) : RecyclerView.Adapt
         // Установка номера на TextView
         val numberTextView = holder.numberTextView
         numberTextView.text = (position).toString()
+
+        squareView.setOnClickListener {
+            val intent = Intent(context, MainActivity2::class.java)
+            val square = squares[position] // Получаем модель квадрата для текущей позиции
+            intent.putExtra("squareColorResId", square.colorResId)
+            intent.putExtra("number", square.number)
+            context.startActivity(intent)
+        }
     }
+
     override fun getItemCount(): Int {
         return squares.size
     }
